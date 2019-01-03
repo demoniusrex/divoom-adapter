@@ -19,7 +19,7 @@
 | Stop Alarm     | 0x06 0x00 | 0x43    | 0x00 0x00 0x00 0x00 
 | Brightness     | 0x04 0x00 | 0x32    | [{Brightness}](#brightness) 
 | Set Color      | 0x04 0x00 | 0x47    | [{Color}](#colors) 
-| Set Time       | 0x0b 0x00 | 0x18    | {YY(last two digits)} {YY(first two digits)} {MM} {DD} {HH} {MM} {SS} {Fraction of second}
+| Set Time       | 0x0b 0x00 | 0x18    | {YY(last two digits)} {YY(first two digits)} {MM} {DD} <br/> {HH} {MM} {SS} {Fraction of second}
 | Set Temp Unit  | 0x04 0x00 | 0x4c    | [{Temp Unit}](#tempunits) 
 
 ## Escaped Bytes ##
