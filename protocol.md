@@ -7,20 +7,20 @@
 
 ## Commands ##
 | Command Name   | Length    | Command | Command Data 
-|----------------| ---------:|-----:|-------------------- |------
-| Show View      | 0x04 0x00 | 0x45 | [{View}](#views)
-| Show Image     | 0x39 0x00 | 0x44 | 0x00 0x0a 0x0a 0x04 {ImageData} 
-| Show Animation | 0x3b 0x00 | 0x49 | 0x00 0x0a 0x0a 0x04 {Position} {Time to display} {ImageData} 
-| Play Music     | 0x05 0x00 | 0x41 | [{Music Type}](#musictypes) 0xff 
-| Stop Music     | 0x05 0x00 | 0x41 | [{Music Type}](#musictypes) 0x00 
-| Sleep          | 0x05 0x00 | 0x40 | [{Sleep Duration}](#sleep) [{Music Type}](#musictypes) 0xff 
-| Stop Sleep     | 0x05 0x00 | 0x40 | 0x00 0x00 0x00 
-| Alarm          | 0x06 0x00 | 0x43 | {Hour} {Minute} [{Music Type}](#musictypes) 0xff 
-| Stop Alarm     | 0x06 0x00 | 0x43 | 0x00 0x00 0x00 0x00 
-| Brightness     | 0x04 0x00 | 0x32 | [{Brightness}](#brightness) 
-| Set Color      | 0x04 0x00 | 0x47 | [{Color}](#colors) 
-| Set Time       | 0x0b 0x00 | 0x18 | {YY(last two digits)} {YY(first two digits)} {MM} {DD} {HH} {MM} {SS} {Fraction of second}
-| Set Temp Unit  | 0x04 0x00 | 0x4c | [{Temp Unit}](#tempunits) 
+| -------------- | ---------:| -------:|--------------------
+| Show View      | 0x04 0x00 | 0x45    | [{View}](#views)
+| Show Image     | 0x39 0x00 | 0x44    | 0x00 0x0a 0x0a 0x04 {ImageData} 
+| Show Animation | 0x3b 0x00 | 0x49    | 0x00 0x0a 0x0a 0x04 {Position} {Time to display} {ImageData} 
+| Play Music     | 0x05 0x00 | 0x41    | [{Music Type}](#musictypes) 0xff 
+| Stop Music     | 0x05 0x00 | 0x41    | [{Music Type}](#musictypes) 0x00 
+| Sleep          | 0x05 0x00 | 0x40    | [{Sleep Duration}](#sleep) [{Music Type}](#musictypes) 0xff 
+| Stop Sleep     | 0x05 0x00 | 0x40    | 0x00 0x00 0x00 
+| Alarm          | 0x06 0x00 | 0x43    | {Hour} {Minute} [{Music Type}](#musictypes) 0xff 
+| Stop Alarm     | 0x06 0x00 | 0x43    | 0x00 0x00 0x00 0x00 
+| Brightness     | 0x04 0x00 | 0x32    | [{Brightness}](#brightness) 
+| Set Color      | 0x04 0x00 | 0x47    | [{Color}](#colors) 
+| Set Time       | 0x0b 0x00 | 0x18    | {YY(last two digits)} {YY(first two digits)} {MM} {DD} {HH} {MM} {SS} {Fraction of second}
+| Set Temp Unit  | 0x04 0x00 | 0x4c    | [{Temp Unit}](#tempunits) 
 
 ## Escaped Bytes ##
 | Original Byte | Escaped Value |
