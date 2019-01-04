@@ -30,7 +30,7 @@ Following static byte array can be sent to temperature time: 01 04 00 45 03 04 4
 #### PREFIX (static) ####
 01 39 00 44 00 0a 0a 04
 
-#### DATA ####
+#### <a name="imagedata"></a>DATA ####
 One pixel is represented by half a byte. The lower byte is the the first (left) pixel.
 50 bytes are 100 half bytes. Ordered in rows.
 There are 8 colors: 0-7 where 0 is black and 7 is white.
@@ -44,7 +44,7 @@ There are 8 colors: 0-7 where 0 is black and 7 is white.
 * 7 = white
 * Within this data, the invalid bytes procedure is applied as decribed in the text.
 
-#### Invalid bytes ####
+#### <a name="invalidbytes"></a>Invalid bytes ####
 If some data contains invalid bytes they are masked.
 invalid bytes are 0x01, 0x02 and 0x03.
 masking procedure is: 
@@ -52,12 +52,12 @@ first prepend the byte with another byte (0x03)
 then add 0x03 to the invalid byte and append it.
 example: original = 0x01 -> corrected 0x03 0x04
 
-#### POSTFIX ####
+#### <a name="postfix"></a>POSTFIX ####
 1. byte lower byte of the SUM over (PREFIX without first byte) + DATA (invalid bytes error correction applies here - so these may be two bytes)
 2. byte upper byte of the SUM over (PREFIX without first byte) + DATA (invalid bytes error correction applies here - so these may be two bytes)
 4. byte "02"
 
-## Send animation loops ##
+## <a name="animation"></a>Send animation loops ##
 Very similar to sending simple images. You just send several packages containing each single images with slightly different header.
 However the prefix changes slightly.
 The static part looks like this: 3b 00 49 00 0a 0a 04

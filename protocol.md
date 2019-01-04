@@ -1,16 +1,21 @@
 # Divoom Aurabox Bluetooth serial protocol documentation #
 
 ## Command Message Format ##
-| Message Prefix | Message length | Command | Command Data | Checksum | Message Suffix |
+| Message Prefix | Message length | Command | Command Data | Checksum (<a href="readme.md#postfix">info</a>) | Message Suffix |
 | -------------- | -------------- |-------- | ------------ | -------- | -------------- |
 | 0x01           | 0x?? 0x00      | 0x??    | 0x??*        | 0x?? 0x??| 0x02           |
+
+Notes
+1. Message length is calculated as the number of bytes including the length bytes. For example, 2 length bytes + 1 command byte + number of command data bytes = length. The second length byte appears to be unused because there are no messages longer than 59 (0x3b).
+2. Refer to <a href="readme.md#postfix">readme</a> section on postfix for more information on calculating checksum. 
+3. Refer to <a href="readme.md#invalidbytes">readme</a> section on invalid bytes and <a href="#escapedbytes">table below</a> for more information on encoding invalid bytes. Invalid bytes are encoded _after_ calculating length and <a href="readme.md#postfix">checksum</a> but _before_ adding message prefix and suffix bytes.
 
 ## Commands ##
 | Command Name   | Length    | Command | Command Data 
 | -------------- | ---------:| -------:|--------------------
 | Show View      | 0x04 0x00 | 0x45    | [{View}](#views)
-| Show Image     | 0x39 0x00 | 0x44    | 0x00 0x0a 0x0a 0x04 {ImageData} 
-| Show Animation | 0x3b 0x00 | 0x49    | 0x00 0x0a 0x0a 0x04 {Position} {Time to display} {ImageData} 
+| Show Image     | 0x39 0x00 | 0x44    | 0x00 0x0a 0x0a 0x04 [{ImageData}](readme.md#imagedata) 
+| Show Animation | 0x3b 0x00 | 0x49    | 0x00 0x0a 0x0a 0x04 [{Position}](readme.md#animation) [{Time to display}](readme.md#animation) [{ImageData}](readme.md#imagedata) 
 | Play Music     | 0x05 0x00 | 0x41    | [{Music Type}](#musictypes) 0xff 
 | Stop Music     | 0x05 0x00 | 0x41    | [{Music Type}](#musictypes) 0x00 
 | Sleep          | 0x05 0x00 | 0x40    | [{Sleep Duration}](#sleep) [{Music Type}](#musictypes) 0xff 
@@ -22,7 +27,7 @@
 | Set Time       | 0x0b 0x00 | 0x18    | {YY(last two digits)} {YY(first two digits)} {MM} {DD} <br/> {HH} {MM} {SS} {Fraction of second}
 | Set Temp Unit  | 0x04 0x00 | 0x4c    | [{Temp Unit}](#tempunits) 
 
-## Escaped Bytes ##
+## <a name="escapedbytes">Escaped Bytes</a> ##
 | Original Byte | Escaped Value |
 | ------------- | ------------- |
 | 0x01          | 0x03 0x04     |
